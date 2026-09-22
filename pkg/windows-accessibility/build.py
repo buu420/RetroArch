@@ -10,8 +10,10 @@ import subprocess
 import zipfile
 from pathlib import Path
 
-VERSION = "2026.09.21"
-STEM = f"RetroArch-Accessibility-{VERSION}-Win64"
+VERSION = "2026.09.21.1"
+# Keep the public download filenames stable when publishing a new revision.
+# The real build version is recorded inside Setup, the manifest and README.
+STEM = "RetroArch-Accessibility-2026.09.21-Win64"
 RESOURCE_DIRS = ("assets", "autoconfig", "database", "info", "overlays", "shaders")
 CORE_NAMES = ("mednafen_psx_libretro", "mednafen_psx_hw_libretro")
 
@@ -177,7 +179,9 @@ https://github.com/libretro/common-overlays
 https://github.com/libretro/glsl-shaders
 https://github.com/libretro/slang-shaders
 
-This local installer is unsigned and is not a GitHub release.
+This community build is unsigned. The installer download URL is kept stable:
+https://github.com/buu420/RetroArch/releases/download/accessibility-2026.09.21/RetroArch-Accessibility-2026.09.21-Win64-Setup.exe
+See the release notes and package-manifest.json for the current build revision.
 """
     (output / "BUILD-SOURCES.txt").write_text(build_sources, encoding="utf-8")
     copy(output / "BUILD-SOURCES.txt", payload / "BUILD-SOURCES.txt")
@@ -218,6 +222,8 @@ This local installer is unsigned and is not a GitHub release.
     copy(package / "RetroArchAccessibility.nsi", installer_script)
     with (work / "nsis-build.log").open("w", encoding="utf-8") as log:
         run(args.nsis, "/V3", f"/DPAYLOAD={payload}", f"/DSOURCE_ROOT={source}",
+            f"/DPACKAGE_VERSION={VERSION}",
+            "/DPACKAGE_VERSION_NUMERIC=" + ".".join(str(int(n)) for n in VERSION.split(".")),
             f"/DINSTALL_FILES={install_file}", f"/DUNINSTALL_FILES={remove_file}",
             f"/DINSTALLER_OUT={installer}",
             f"/DMAX_INSTALL_DIR={258 - max(len(str(p.relative_to(payload))) for p in files)}",

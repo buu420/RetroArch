@@ -22,12 +22,12 @@ CRCCheck on
 ShowInstDetails show
 ShowUninstDetails show
 BrandingText "Community accessibility build by buu420"
-VIProductVersion "2026.9.21.0"
+VIProductVersion "${PACKAGE_VERSION_NUMERIC}"
 VIAddVersionKey /LANG=1033 "ProductName" "${PRODUCT}"
 VIAddVersionKey /LANG=1033 "CompanyName" "buu420"
 VIAddVersionKey /LANG=1033 "LegalCopyright" "RetroArch, Mednafen and contributors; accessibility by buu420"
 VIAddVersionKey /LANG=1033 "FileDescription" "RetroArch with Digimon World 2 accessibility"
-VIAddVersionKey /LANG=1033 "FileVersion" "2026.09.21"
+VIAddVersionKey /LANG=1033 "FileVersion" "${PACKAGE_VERSION}"
 
 !define MUI_ABORTWARNING
 !define MUI_ICON "${SOURCE_ROOT}\media\retroarch.ico"
@@ -130,7 +130,7 @@ Section "RetroArch and Digimon World 2 cores"
   CreateDirectory "$INSTDIR\playlists"
   CreateDirectory "$INSTDIR\downloads"
   CreateDirectory "$INSTDIR\logs"
-  WriteINIStr "$INSTDIR\accessibility-install.ini" "Package" "Version" "2026.09.21"
+  WriteINIStr "$INSTDIR\accessibility-install.ini" "Package" "Version" "${PACKAGE_VERSION}"
   WriteUninstaller "$INSTDIR\Uninstall-Accessibility.exe"
   IfErrors install_failed
   SetOutPath "$INSTDIR"
@@ -141,7 +141,7 @@ Section "RetroArch and Digimon World 2 cores"
   CreateShortCut "$SMPROGRAMS\${PRODUCT}\Uninstall.lnk" "$INSTDIR\Uninstall-Accessibility.exe"
   WriteRegStr HKCU "${REGKEY}" "InstallDir" "$INSTDIR"
   WriteRegStr HKCU "${UNINSTALLKEY}" "DisplayName" "${PRODUCT} with Digimon World 2"
-  WriteRegStr HKCU "${UNINSTALLKEY}" "DisplayVersion" "2026.09.21"
+  WriteRegStr HKCU "${UNINSTALLKEY}" "DisplayVersion" "${PACKAGE_VERSION}"
   WriteRegStr HKCU "${UNINSTALLKEY}" "Publisher" "buu420 / Libretro contributors"
   WriteRegStr HKCU "${UNINSTALLKEY}" "InstallLocation" "$INSTDIR"
   WriteRegStr HKCU "${UNINSTALLKEY}" "DisplayIcon" "$INSTDIR\retroarch.exe"

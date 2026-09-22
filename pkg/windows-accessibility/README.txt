@@ -1,5 +1,5 @@
-RetroArch Accessibility with Digimon World 2
-Windows x64 development build - 2026.09.21
+Retro Core Access: Digimon World 2
+Windows x64 testing build - 2026.09.21.1 (controller navigation update)
 
 Install
 -------
@@ -21,6 +21,20 @@ and select your game's CUE, CHD or M3U file. Keep a BIN beside its CUE.
 The Beetle PSX HW - DW2 Accessibility core is also included for hardware
 rendering. Start with the software Beetle PSX core if unsure.
 
+Controller navigation: hold L2 / left trigger on player 1's controller, then:
+  D-pad Left / Right: previous / next category.
+  D-pad Up / Down: previous / next target.
+  Left-stick click (L3): start or stop guidance.
+  Left face button (Square / Xbox X): repeat target or direction.
+  Top face button (Triangle / Xbox Y): read location and coordinates.
+
+Held D-pad directions repeat. Release shortcut buttons and center the sticks
+before resuming play. A control still held when L2 is released stays blocked
+until released, so it does not also move the player or select a game option.
+Core Options > Input > DW2 Controller Navigation is enabled by default.
+Disable it to use L2 for ordinary gameplay. Keyboard navigation remains available.
+The bindings follow RetroPad positions after any frontend controller remapping.
+
 Keyboard navigation during gameplay:
   Home / End: change navigation category.
   Page Up / Page Down: select target.
@@ -37,6 +51,13 @@ Updates and player data
 The two bundled cores are locked against RetroArch's core updater, so it
 does not replace them with ordinary upstream builds. Install an updated
 accessibility package to update this set. Other cores can still be added.
+
+The installer contains bundled cores; it does not download updates by itself.
+New revisions use this same download link and filename:
+https://github.com/buu420/RetroArch/releases/download/accessibility-2026.09.21/RetroArch-Accessibility-2026.09.21-Win64-Setup.exe
+Download it again, close RetroArch Accessibility, and run it over the existing
+installation. The build revision is shown at the top of this file and in the
+installer's file properties, even though its download filename stays the same.
 
 Reinstalling preserves retroarch.cfg, core options, controller settings,
 saves, save states, game images and BIOS files. Uninstalling also keeps
